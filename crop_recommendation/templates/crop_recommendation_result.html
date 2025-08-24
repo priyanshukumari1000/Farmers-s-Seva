@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <title>फसल सिफारिश परिणाम</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h2>सिफारिश की गई फसल: {{ crop }}</h2>
+        <a href="/crop_recommendation">🔙 वापस जाएं</a>
+    </div>
+</body>
+</html>

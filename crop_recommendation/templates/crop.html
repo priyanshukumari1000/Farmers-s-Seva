@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Crop Recommendation</title>
+</head>
+<body>
+  <h2>Crop Recommendation</h2>
+  <form id="cropForm">
+    <input type="number" name="Nitrogen" placeholder="Nitrogen" required>
+    <input type="number" name="Phosphorus" placeholder="Phosphorus" required>
+    <input type="number" name="Potassium" placeholder="Potassium" required>
+    <input type="number" step="0.1" name="temperature" placeholder="Temperature" required>
+    <input type="number" step="0.1" name="humidity" placeholder="Humidity" required>
+    <input type="number" step="0.1" name="ph" placeholder="pH" required>
+    <input type="number" step="0.1" name="rainfall" placeholder="Rainfall" required>
+    <input type="submit" value="Get Recommendation">
+  </form>
+
+  <div id="result"></div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

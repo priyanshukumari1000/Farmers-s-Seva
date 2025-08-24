@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>उत्पाद सूची</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      padding: 20px;
+      background: #f7f9f6;
+    }
+
+    h1 {
+      color: #0d652d;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+
+    .product-card img {
+      width: 100px;
+      height: 100px;
+      object-fit: cover;
+      margin-bottom: 10px;
+    }
+
+    .product-card h3 {
+      color: #0d652d;
+      margin: 10px 0;
+    }
+
+    .product-card p {
+      color: #555;
+    }
+
+    .btn {
+      margin: 5px;
+      padding: 10px 20px;
+      background-color: #138808;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .btn-buy {
+      background-color: #0d652d;
+    }
+  </style>
+</head>
+<body>
+  <h1>उपलब्ध उत्पाद</h1>
+
+  <div class="product-grid" id="productList">
+    <!-- Product cards will be added dynamically -->
+  </div>
+
+  <script>
+    const products = [
+      { id: 1, name: 'बीज', price: 20, image: 'seeds.webp' },
+      { id: 2, name: 'कीटनाशक', price: 450, image: 'pesticides.jpg' },
+      // Add more products here
+    ];
+
+    const productList = document.getElementById('productList');
+
+
+    products.forEach(product => {
+    const card = document.createElement('div');
+    card.classList.add('product-card');
+
+    card.innerHTML = `
+      <img src="${product.image}" alt="${product.name}">
+      <h3>${product.name}</h3>
+      <p>₹${product.price} / किलो</p>
+      <button class="btn btn-add">कार्ट में जोड़ें</button>
+      <button class="btn btn-buy">अभी खरीदें</button>
+    `;
+
+    const addBtn = card.querySelector('.btn-add');
+    const buyBtn = card.querySelector('.btn-buy');
+
+    // Attach event listeners
+    addBtn.addEventListener("click", () => addToCart(product));
+    buyBtn.addEventListener("click", () => buyNow(product));
+
+    productList.appendChild(card);
+  });
+
+
+    // products.forEach(product => {
+    //   const card = document.createElement('div');
+    //   card.classList.add('product-card');
+
+    //   card.innerHTML = `
+    //     <img src="${product.image}" alt="${product.name}">
+    //     <h3>${product.name}</h3>
+    //     <p>₹${product.price} / किलो</p>
+    //     <button class="btn" onclick='addToCart(${JSON.stringify(product)})'>कार्ट में जोड़ें</button>
+    //     <button class="btn" onclick='addToCart(${JSON.stringify(product)})'>कार्ट में जोड़ें</button>
+    //     <button class="btn btn-buy" onclick='buyNow(${JSON.stringify(product)})'>अभी खरीदें</button>
+    //   `;
+
+    //   productList.appendChild(card);
+    // });
+
+    function addToCart(product) {
+      const currentUser = localStorage.getItem("currentUser");
+        let allCarts = JSON.parse(localStorage.getItem("allCarts")) || {};
+
+
+
+ 
+
+
+        if (!allCarts[currentUser]) allCarts[currentUser] = [];
+
+        allCarts[currentUser].push({
+          name: product.name,
+          quantity: 1,
+          price: product.price
+        });
+
+        localStorage.setItem("allCarts", JSON.stringify(allCarts));
+
+    }
+
+    function buyNow(product) {
+      const quantity = prompt("मात्रा दर्ज करें (किलो में):", "1");
+      const address = prompt("डिलीवरी पता दर्ज करें:");
+      const payment = prompt("भुगतान का तरीका (UPI/कैश):", "UPI");
+
+      if (!quantity || !address || !payment) {
+        alert("सभी जानकारी आवश्यक है।");
+        return;
+      }
+
+      const order = {
+        ...product,
+        quantity: parseInt(quantity),
+        address: address,
+        payment: payment,
+        status: 'प्रोसेसिंग में'
+      };
+
+      const currentUser = localStorage.getItem('currentUser');
+        let allOrders = JSON.parse(localStorage.getItem('allOrders')) || {};
+
+        if (!allOrders[currentUser]) {
+        allOrders[currentUser] = [];
+        }
+
+        allOrders[currentUser].push(order);  // push order for that Aadhaar
+        localStorage.setItem('allOrders', JSON.stringify(allOrders));
+
+        const availability = JSON.parse(localStorage.getItem("productAvailability")) || {};
+
+        products.forEach(product => {
+          if (availability[product.name] === false) return; // Skip unavailable product
+
+          // render product card as usual...
+        });
+
+
+        if (payment.toLowerCase() === 'upi') {
+          let upiPayments = JSON.parse(localStorage.getItem('upiPayments')) || {};
+          if (!upiPayments[currentUser]) {
+            upiPayments[currentUser] = [];
+          }
+          upiPayments[currentUser].push(order);
+          localStorage.setItem('upiPayments', JSON.stringify(upiPayments));
+        }
+
+        alert("ऑर्डर सफलतापूर्वक किया गया!");
+        window.location.href = "payment.html";
+
+
+      alert("ऑर्डर सफलतापूर्वक किया गया!");
+      window.location.href = "orders.html";
+    }
+  </script>
+</body>
+</html>

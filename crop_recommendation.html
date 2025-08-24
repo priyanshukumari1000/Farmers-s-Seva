@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>फसल सिफारिश प्रणाली / Crop Recommendation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #e6f2ff;
+      padding: 20px;
+    }
+    h1 {
+      color: #004080;
+      text-align: center;
+    }
+    form {
+      max-width: 600px;
+      margin: 0 auto;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    }
+    input, label {
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    button {
+      background-color: #004080;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .result {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: green;
+    }
+  </style>
+</head>
+<body>
+
+<h1>फसल सिफारिश प्रणाली / Crop Recommendation System</h1>
+
+<form onsubmit="recommendCrop(event)">
+  <label>नाइट्रोजन (N):</label>
+  <input type="number" id="n" required>
+
+  <label>फॉस्फोरस (P):</label>
+  <input type="number" id="p" required>
+
+  <label>पोटेशियम (K):</label>
+  <input type="number" id="k" required>
+
+  <label>तापमान (Temperature in °C):</label>
+  <input type="number" id="temp" step="0.1" required>
+
+  <label>नमी (Humidity in %):</label>
+  <input type="number" id="humidity" step="0.1" required>
+
+  <label>pH स्तर:</label>
+  <input type="number" id="ph" step="0.1" required>
+
+  <label>वर्षा (Rainfall in mm):</label>
+  <input type="number" id="rainfall" step="0.1" required>
+
+  <button type="submit">सुझाव प्राप्त करें / Get Recommendation</button>
+</form>
+
+<div class="result" id="result"></div>
+
+<script>
+  function recommendCrop(event) {
+    event.preventDefault();
+    const n = parseFloat(document.getElementById("n").value);
+    const p = parseFloat(document.getElementById("p").value);
+    const k = parseFloat(document.getElementById("k").value);
+    const temp = parseFloat(document.getElementById("temp").value);
+    const humidity = parseFloat(document.getElementById("humidity").value);
+    const ph = parseFloat(document.getElementById("ph").value);
+    const rainfall = parseFloat(document.getElementById("rainfall").value);
+
+    let crop = "कोई सिफारिश नहीं / No recommendation";
+
+    if (n > 100 && p > 80 && k > 80 && temp > 25 && humidity > 60 && ph >= 6 && ph <= 7.5 && rainfall > 150) {
+      crop = "चावल / Rice";
+    } else if (n > 80 && p > 60 && k > 40 && temp >= 20 && temp <= 28 && humidity < 60 && ph > 6 && rainfall < 100) {
+      crop = "गेहूं / Wheat";
+    } else if (n < 60 && p < 40 && k < 40 && temp > 25 && humidity > 70 && ph >= 5.5 && rainfall > 200) {
+      crop = "गन्ना / Sugarcane";
+    } else if (ph >= 5.5 && ph <= 6.5 && rainfall > 100 && humidity > 70) {
+      crop = "मक्का / Maize";
+    } else if (n > 60 && p > 60 && k > 60 && ph >= 6 && ph <= 6.5 && rainfall > 75) {
+      crop = "चना / Chickpea";
+    } else if (temp > 20 && temp < 30 && ph >= 6 && ph <= 7 && rainfall > 120) {
+      crop = "बाजरा / Millet";
+    } else if (humidity > 80 && temp > 25 && ph >= 5.5 && rainfall > 100) {
+      crop = "केला / Banana";
+    } else if (ph >= 6.5 && ph <= 7.5 && temp > 23 && humidity > 65) {
+      crop = "कपास / Cotton";
+    } else if (n < 50 && p < 50 && k < 50 && ph >= 5.5 && rainfall < 75) {
+      crop = "मूंगफली / Groundnut";
+    }
+
+    document.getElementById("result").innerText = "अनुशंसित फसल: " + crop;
+  }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>कृषि डेटा प्रबंधन</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #f7f9f6;
+      padding: 20px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #0d652d;
+      margin-bottom: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .card {
+      background: #ffffff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      padding: 20px;
+      text-align: center;
+      transition: transform 0.2s ease;
+      text-decoration: none;
+      color: #0d652d;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .card img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 10px;
+    }
+
+    .card-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>कृषि डेटा प्रबंधन</h1>
+
+  <div class="grid">
+    <a href="weather.html" class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/1163/1163624.png" alt="Weather">
+      <div class="card-title">मौसम डेटा</div>
+    </a>
+
+    <a href="soil.html" class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2907/2907510.png" alt="Soil">
+      <div class="card-title">मिट्टी और भूमि</div>
+    </a>
+
+    <!-- <a href="crop.html" class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2913/2913464.png" alt="Crop">
+      <div class="card-title">फसल जानकारी/ crop recomnedation</div>
+    </a> -->
+
+
+    <!-- <a href="/" class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2913/2913464.png" alt="Crop">
+      <div class="card-title">फसल जानकारी / Crop Recommendation</div>
+    </a> -->
+
+    <a href="/crop_recommendation" class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2913/2913464.png" alt="Crop">
+      <div class="card-title">फसल जानकारी / Crop Recommendation</div>
+    </a>
+
+
+
+
+    <!-- <a href="/" class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2913/2913464.png" alt="Crop">
+      <div class="card-title">फसल जानकारी / Crop Recommendation</div>
+    </a> -->
+
+
+    <a href="market.html" class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2965/2965567.png" alt="Mandi">
+      <div class="card-title">मंडी मूल्य</div>
+    </a>
+
+    <a href="schemes.html" class="card">
+      <img src="https://cdn-icons-png.flaticon.com/512/2721/2721096.png" alt="Schemes">
+      <div class="card-title">सरकारी योजनाएं</div>
+    </a>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <title>फसल सिफारिश / Crop Recommendation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>फसल सिफारिश प्रणाली</h1>
+        <form method="POST">
+            <input type="number" name="N" placeholder="N value" required>
+            <input type="number" name="P" placeholder="P value" required>
+            <input type="number" name="K" placeholder="K value" required>
+            <input type="number" name="temperature" placeholder="Temperature" required>
+            <input type="number" name="humidity" placeholder="Humidity" required>
+            <input type="number" name="ph" placeholder="pH" required>
+            <input type="number" name="rainfall" placeholder="Rainfall" required>
+            <button type="submit">सिफारिश प्राप्त करें / Recommend Crop</button>
+        </form>
+    </div>
+</body>
+</html>

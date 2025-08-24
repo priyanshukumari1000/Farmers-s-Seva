@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>ऑर्डर</title>
+  <style>
+    body { font-family: 'Poppins', sans-serif; padding: 20px; background: #f7f9f6; }
+    h1 { text-align: center; color: #0d652d; }
+    .order {
+      background: #fff;
+      margin: 15px 0;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    button {
+      background-color: #138808;
+      color: white;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-top: 8px;
+    }
+  </style>
+</head>
+<body>
+
+<h1>ऑर्डर जानकारी</h1>
+<div id="orderContainer"></div>
+
+<script>
+  const isAdmin = localStorage.getItem("isAdmin") === "true";
+  const currentUser = localStorage.getItem("currentUser");
+  const allOrders = JSON.parse(localStorage.getItem("allOrders")) || {};
+  const userPhones = JSON.parse(localStorage.getItem("userPhones")) || {};
+  const container = document.getElementById("orderContainer");
+
+  if (isAdmin) {
+    // Admin: Show all orders with phone and status
+    Object.entries(allOrders).forEach(([aadhaar, orders]) => {
+      const phone = userPhones[aadhaar] || "फ़ोन नहीं";
+      orders.forEach((order, index) => {
+        const div = document.createElement("div");
+        div.className = "order";
+        div.innerHTML = `
+          <p><strong>यूज़र आधार:</strong> ${aadhaar}</p>
+          <p><strong>फ़ोन:</strong> ${phone}</p>
+          <p><strong>उत्पाद:</strong> ${order.name}</p>
+          <p><strong>मात्रा:</strong> ${order.quantity} किलो</p>
+          <p><strong>स्थिति:</strong> ${order.status}</p>
+          <button onclick="markDelivered('${aadhaar}', ${index})">Delivered मार्क करें</button>
+        `;
+        container.appendChild(div);
+      });
+    });
+
+    function markDelivered(aadhaar, index) {
+      allOrders[aadhaar][index].status = "Delivered";
+      localStorage.setItem("allOrders", JSON.stringify(allOrders));
+      alert("स्थिति अपडेट की गई!");
+      location.reload();
+    }
+
+  } else {
+    // Normal User: Show their own orders
+    const myOrders = allOrders[currentUser] || [];
+
+    if (myOrders.length === 0) {
+      container.innerHTML = "<p style='text-align:center;'>आपने अभी तक कोई ऑर्डर नहीं किया है।</p>";
+    } else {
+      myOrders.forEach(order => {
+        const div = document.createElement("div");
+        div.className = "order";
+        div.innerHTML = `
+          <p><strong>उत्पाद:</strong> ${order.name}</p>
+          <p><strong>मात्रा:</strong> ${order.quantity} किलो</p>
+          <p><strong>स्थिति:</strong> ${order.status}</p>
+        `;
+        container.appendChild(div);
+      });
+    }
+  }
+</script>
+</body>
+</html>

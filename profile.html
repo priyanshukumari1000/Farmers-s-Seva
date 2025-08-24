@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>मेरी प्रोफ़ाइल - कनेक्ट किसान पोर्टल</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #f8f8f8;
+      margin: 0; padding: 20px;
+      color: #333;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #1e6b1e;
+      color: white;
+      padding: 15px 20px;
+      border-radius: 5px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    header a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 8px 12px;
+      background-color: #145214;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    header a:hover {
+      background-color: #0d3a0d;
+    }
+
+    main {
+      background: white;
+      max-width: 700px;
+      margin: 30px auto;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      padding: 30px;
+    }
+
+    h2 {
+      color: #1e6b1e;
+      margin-bottom: 20px;
+    }
+
+    .profile-section {
+      margin-bottom: 25px;
+    }
+
+    .profile-section label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .profile-section div {
+      background: #f0f0f0;
+      padding: 10px;
+      border-radius: 5px;
+    }
+
+    .document-img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      margin-top: 10px;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      main {
+        margin: 20px 10px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>मेरी प्रोफ़ाइल</h1>
+  <a href="home.html">होम पेज</a>
+</header>
+
+<main>
+  <section class="profile-section">
+    <label>आधार नंबर:</label>
+    <div id="aadhaarDisplay">लोड हो रहा है...</div>
+  </section>
+
+  <section class="profile-section">
+    <label>फ़ोन नंबर:</label>
+    <div id="phoneDisplay">लोड हो रहा है...</div>
+  </section>
+
+  <section class="profile-section">
+    <label>आधार कार्ड की छवि:</label>
+    <img src="aadhaar_sample.png" alt="आधार कार्ड" class="document-img" />
+  </section>
+
+  <section class="profile-section">
+    <label>सरकारी योजनाओं में भागीदारी:</label>
+    <div>
+      <ul>
+        <li>प्रधानमंत्री किसान सम्मान निधि योजना</li>
+        <li>मृदा स्वास्थ्य कार्ड योजना</li>
+        <li>कृषि बीमा योजना</li>
+      </ul>
+    </div>
+  </section>
+</main>
+
+<script>
+    window.addEventListener("DOMContentLoaded", () => {
+    const aadhaar = localStorage.getItem("aadhaar");
+    const phone = localStorage.getItem("phone");
+
+    if (aadhaar && aadhaar.length === 12) {
+      document.getElementById("aadhaarDisplay").textContent = aadhaar.replace(/(\d{4})(?=\d)/g, "$1-");
+    } else {
+      document.getElementById("aadhaarDisplay").textContent = "उपलब्ध नहीं";
+    }
+
+    if (phone && phone.length === 10) {
+      document.getElementById("phoneDisplay").textContent = "+91 " + phone;
+    } else {
+      document.getElementById("phoneDisplay").textContent = "उपलब्ध नहीं";
+    }
+  });
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+    <title>Crop Recommendation</title>
+</head>
+<body>
+    <h2>Crop Recommendation Form</h2>
+    
+    <form action="/predict" method="post">
+        <input type="number" name="Nitrogen" required>
+        <input type="number" name="Phosphorus" required>
+        <input type="number" name="Potassium" required>
+        <input type="number" step="0.1" name="temperature" required>
+        <input type="number" step="0.1" name="humidity" required>
+        <input type="number" step="0.1" name="ph" required>
+        <input type="number" step="0.1" name="rainfall" required>
+        <input type="submit" value="Get Recommendation">
+    </form>
+
+
+    {% if prediction_text %}
+        <h3>{{ prediction_text }}</h3>
+    {% endif %}
+</body>
+</html>
+
+
+
+ -->
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crop Recommendation</title>
+</head>
+<body>
+    <h2>Crop Recommendation Form</h2>
+    <form action="/predict" method="post">
+        <label>Nitrogen:</label> <input type="number" name="Nitrogen" required><br>
+        <label>Phosphorus:</label> <input type="number" name="Phosphorus" required><br>
+        <label>Potassium:</label> <input type="number" name="Potassium" required><br>
+        <label>Temperature:</label> <input type="number" name="temperature" step="0.1" required><br>
+        <label>Humidity:</label> <input type="number" name="humidity" step="0.1" required><br>
+        <label>pH:</label> <input type="number" name="ph" step="0.1" required><br>
+        <label>Rainfall:</label> <input type="number" name="rainfall" step="0.1" required><br><br>
+        <input type="submit" value="Get Recommendation">
+    </form>
+
+    {% if prediction_text %}
+        <h3>{{ prediction_text }}</h3>
+    {% endif %}
+</body>
+</html>
+
+
+
+
+
+
+

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>मिट्टी रिपोर्ट</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+<style>
+  body{font-family:'Poppins',sans-serif;background:#f7f9f6;padding:20px;}
+  h1{text-align:center;color:#0d652d;margin-bottom:25px;}
+  .report{max-width:600px;margin:auto;background:#fff;border-radius:12px;box-shadow:0 4px 12px rgba(0,0,0,.08);padding:25px;}
+  .row{display:flex;justify-content:space-between;margin:12px 0;}
+  .row span:first-child{font-weight:600;color:#0d652d;}
+</style>
+</head>
+<body>
+<h1>मिट्टी की गुणवत्ता रिपोर्ट</h1>
+<div class="report" id="soilReport">
+  <!-- JS से लोड होगा -->
+</div>
+
+<script>
+  const sampleSoil = { ph:6.8, moisture:'22%', organic:'1.5%', nitrogen:'Low', phosphorous:'Medium', potash:'High' };
+
+  const rep = document.getElementById('soilReport');
+  for(const [k,v] of Object.entries(sampleSoil)){
+    rep.innerHTML += `<div class="row"><span>${k.toUpperCase()}</span><span>${v}</span></div>`;
+  }
+  rep.innerHTML += `<hr><p>👉 सिफारिश: नाइट्रोजन‑आधारित उर्वरक 50kg/एकड़</p>`;
+</script>
+</body>
+</html>

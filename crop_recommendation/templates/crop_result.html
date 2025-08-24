@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crop Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h2>Recommended Crop</h2>
+    <p>The best crop to grow is: <strong>{{ crop }}</strong></p>
+    <a href="/crop_recommendation">Try Another</a>
+</body>
+</html>

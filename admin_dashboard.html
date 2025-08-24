@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8">
+  <title>एडमिन डैशबोर्ड</title>
+  <style>
+    body { font-family: 'Poppins', sans-serif; padding: 20px; background: #f1f9f4; }
+    h1 { color: #0d652d; text-align: center; }
+    .order-box {
+      background: white;
+      margin: 15px 0;
+      padding: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+    button {
+      padding: 8px 16px;
+      background: #138808;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<h1>एडमिन डैशबोर्ड - सभी यूज़र्स के ऑर्डर</h1>
+<div id="orderContainer"></div>
+
+<script>
+  const allProductsContainer = document.getElementById("allProductsList");
+
+// Step 1: Read all orders + user phones
+const allOrders = JSON.parse(localStorage.getItem("allOrders")) || {};
+const userPhones = JSON.parse(localStorage.getItem("userPhones")) || {};
+
+const productMap = {};
+
+// Step 2: Collect products ordered
+Object.entries(allOrders).forEach(([aadhaar, orders]) => {
+  const phone = userPhones[aadhaar] || "फ़ोन उपलब्ध नहीं";
+
+  orders.forEach(order => {
+    const key = order.name;
+
+    if (!productMap[key]) {
+      productMap[key] = [];
+    }
+
+    productMap[key].push({
+      aadhaar,
+      phone,
+      quantity: order.quantity,
+      status: order.status
+    });
+  });
+});
+
+// Step 3: Display each product + buyer info
+    Object.entries(productMap).forEach(([productName, buyers]) => {
+    const div = document.createElement("div");
+    div.className = "order-box";
+
+    let totalQty = buyers.reduce((sum, b) => sum + Number(b.quantity), 0);
+
+    div.innerHTML = `
+        <h3>उत्पाद: ${productName}</h3>
+        <p>कुल मात्रा: ${totalQty} किलो</p>
+        <p><strong>खरीदार:</strong></p>
+        <ul style="margin-top:5px;">
+        ${buyers.map(buyer => `
+            <li>
+            आधार: ${buyer.aadhaar} | फ़ोन: ${buyer.phone} | मात्रा: ${buyer.quantity} | स्थिति: ${buyer.status}
+            </li>
+        `).join('')}
+        </ul>
+    `;
+
+    allProductsContainer.appendChild(div);
+    });
+
+
+  function markDelivered(aadhaar, index) {
+    let allOrders = JSON.parse(localStorage.getItem("allOrders")) || {};
+    allOrders[aadhaar][index].status = "Delivered";
+    localStorage.setItem("allOrders", JSON.stringify(allOrders));
+    alert("ऑर्डर की स्थिति 'Delivered' के रूप में अपडेट की गई।");
+    location.reload();
+  }
+</script>
+</body>
+</html>

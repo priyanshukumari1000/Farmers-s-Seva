@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>कनेक्ट किसान पोर्टल</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f8f8f8;
+    }
+    .profile-link {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: orange;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      z-index: 9999;
+    }
+    .profile-link:hover {
+      background-color: darkorange;
+    }
+    .hero-section {
+      position: relative;
+      padding: 3rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: white;
+      overflow: hidden;
+    }
+    .hero-text {
+      max-width: 60%;
+      z-index: 2;
+    }
+    .hero-text h1 {
+      font-size: 2.5rem;
+      margin: 0;
+      line-height: 1.3;
+    }
+    .hero-text .orange { color: orange; }
+    .hero-text .green { color: green; }
+    .hero-text p {
+      margin-top: 1rem;
+      font-size: 1.1rem;
+      color: #333;
+    }
+    .tricolor-overlay {
+      position: absolute;
+      right: 8%;
+      top: 20%;
+      width: 300px;
+      height: 300px;
+      border-radius: 50%;
+      background: linear-gradient(to bottom, orange 0%, white 50%, green 100%);
+      opacity: 0.2;
+      z-index: 1;
+    }
+    .modi-image {
+      position: relative;
+      z-index: 5;
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      object-fit: cover;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    }
+    main {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h2 { color: #1e6b1e; }
+    .intro {
+      max-width: 800px;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .feature-card {
+      flex: 1 1 200px;
+      background-color: #fff;
+      border: 1px solid #ddd;
+      padding: 1.5rem;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .feature-card img {
+      width: 60px;
+      height: 60px;
+      margin-bottom: 0.5rem;
+    }
+    .kusum-section {
+      background-color: #fff;
+      margin: 2rem auto;
+      padding: 2rem;
+      max-width: 600px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .kusum-section h3 {
+      margin-bottom: 1rem;
+      color: #1e6b1e;
+    }
+    .kusum-section label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: bold;
+    }
+    .kusum-section input[type="file"] {
+      margin-top: 0.5rem;
+    }
+    .kusum-section button {
+      margin-top: 1.5rem;
+      padding: 10px 20px;
+      background-color: orange;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    .kusum-section button:hover {
+      background-color: darkorange;
+    }
+    footer {
+      background-color: #eee;
+      padding: 1rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+    a {
+      color: #1e6b1e;
+      text-decoration: none;
+      font-weight: 600;
+    }
+    @media (max-width: 768px) {
+      .hero-section {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-text { max-width: 100%; }
+      .tricolor-overlay {
+        width: 200px;
+        height: 200px;
+        left: 50%;
+        transform: translateX(-50%);
+        top: 40%;
+      }
+      .modi-image {
+        margin-top: 2rem;
+      }
+      .feature-card {
+        flex: 1 1 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <a href="profile.html" class="profile-link">👤 मेरी प्रोफ़ाइल</a>
+
+  <section class="hero-section">
+    <div class="hero-text">
+      <h1>
+        <span class="orange">Pradhan Mantri</span><br>
+        <span class="green">KISAN Samman</span><br>
+        Nidhi: <strong>Beneficiaries for Farmers</strong>
+      </h1>
+      <p>कृषकों को सीधे सहायता देने की सरकार की प्रमुख योजना, जो डिजिटल समाधान और वित्तीय समावेशन को बढ़ावा देती है।</p>
+    </div>
+    <div class="tricolor-overlay"></div>
+    <img src="PM.jpeg" alt="PM Modi" class="modi-image">
+  </section>
+
+  <main>
+    <h2>किसानों को डिजिटल समाधान से सशक्त बनाना</h2>
+    <p class="intro">
+      कनेक्ट किसान पोर्टल एक प्रमुख कृषि समर्थन पहल है जो किसानों को आधुनिक टूल्स, बाज़ार से जोड़ने, और वित्तीय सहायता प्रदान करती है। हमारा उद्देश्य कृषि को सरल, लाभकारी और डिजिटल बनाना है।
+    </p>
+
+    <div class="features">
+      <div class="feature-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/1170/1170576.png" alt="E-commerce">
+        <p>ई-कॉमर्स प्लेटफॉर्म</p>
+      </div>
+      <div class="feature-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/3354/3354636.png" alt="Data">
+        <p>कृषि डेटा प्रबंधन</p>
+      </div>
+      <div class="feature-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/411/411763.png" alt="Guidance">
+        <p>विशेषज्ञ मार्गदर्शन और संसाधन</p>
+      </div>
+      <div class="feature-card">
+        <img src="https://cdn-icons-png.flaticon.com/512/2910/2910791.png" alt="Finance">
+        <p>वित्तीय सहायता</p>
+      </div>
+    </div>
+
+    <section class="kusum-section">
+      <h3>कुसुम योजना के लिए पंजीकरण करें</h3>
+      <form action="/verify" method="POST" enctype="multipart/form-data">
+        <div class="form-group">
+          <label for="aadhaar">Aadhaar Card:</label>
+          <input type="file" class="form-control" id="aadhaar" name="aadhaar" accept="image/*" required>
+        </div>
+        <div class="form-group">
+          <label for="land">Land Ownership Certificate:</label>
+          <input type="file" class="form-control" id="land" name="land" accept=".pdf" required>
+        </div>
+        <div class="form-group">
+          <label for="bill">Electricity Bill:</label>
+          <input type="file" class="form-control" id="bill" name="bill" accept=".pdf" required>
+        </div>
+        <button type="submit">Verify Documents</button>
+      </form>
+      <div id="result" style="margin-top: 20px;"></div>
+    </section>
+  </main>
+
+  <footer>
+    अधिक जानकारी के लिए: <a href="https://www.connectkisan.com" target="_blank">www.connectkisan.com</a> |
+    ईमेल: <a href="mailto:support@connectkisan.com">support@connectkisan.com</a>
+  </footer>
+
+  <script>
+    document.querySelector('form').addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(e.target);
+      const resultDiv = document.getElementById('result');
+      
+      try {
+        resultDiv.innerHTML = 'Verifying documents...';
+        const response = await fetch('/verify', {
+          method: 'POST',
+          body: formData
+        });
+        
+        const data = await response.json();
+        
+        if (response.ok) {
+          let resultHtml = `
+            <h4>Verification Results:</h4>
+            <p><strong>Aadhaar Card:</strong> ${data.aadhaar_info.name} (Last 4 digits: ${data.aadhaar_info.last_4_digits})</p>
+            <p><strong>Land Ownership:</strong> ${data.land_verification.name_match ? '✅ Name matches' : '❌ Name mismatch'} | 
+               ${data.land_verification.aadhaar_match ? '✅ Aadhaar matches' : '❌ Aadhaar mismatch'}</p>
+            <p><strong>Electricity Bill:</strong> ${data.bill_verification.name_match ? '✅ Name matches' : '❌ Name mismatch'} | 
+               ${data.bill_verification.aadhaar_match ? '✅ Aadhaar matches' : '❌ Aadhaar mismatch'}</p>
+            <p><strong>Overall Result:</strong> ${data.all_match ? '✅ All documents match!' : '❌ Documents do not match'}</p>
+          `;
+          resultDiv.innerHTML = resultHtml;
+        } else {
+          resultDiv.innerHTML = `<p style="color: red;">Error: ${data.error}</p>`;
+        }
+      } catch (error) {
+        resultDiv.innerHTML = `<p style="color: red;">Error: ${error.message}</p>`;
+      }
+    });
+  </script>
+</body>
+</html>
